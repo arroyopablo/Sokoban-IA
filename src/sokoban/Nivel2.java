@@ -17,20 +17,30 @@ import javax.swing.JLabel;
  */
 public class Nivel2 extends javax.swing.JFrame {
     int pasos = 0;
+    int posX;
+    int posY;
     JLabel[][] label = new JLabel[6][7];  
     ImageIcon image;
     String [][] tablero = new String[6][7];
+    int [][] metas = new int[2][2];
+    boolean juegoTerminado;
     /**
      * Creates new form Nivel
      * @param tableroIn
+     * @param posicionX
+     * @param posicionY
      */
-    public Nivel2(String[][] tableroIn) {
+    public Nivel2(String[][] tableroIn,int posicionX, int posicionY) {
         initComponents();
         labels();
         addKeyListener(new TAdapter());
         setFocusable(true);
         tablero = tableroIn;
+        encontraMetas(tablero);
         actualizarTablero(tablero);
+        posX = posicionX;
+        posY = posicionY;
+        juegoTerminado = false;
     }
 
     /**
@@ -90,11 +100,13 @@ public class Nivel2 extends javax.swing.JFrame {
         jLabelPasos = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         cerrarNivel1 = new javax.swing.JLabel();
+        finalJuego = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         nivel1.setBackground(new java.awt.Color(255, 255, 255));
+        nivel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -125,21 +137,12 @@ public class Nivel2 extends javax.swing.JFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel10.setToolTipText("");
-        jLabel10.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel10.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel10.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel11.setToolTipText("");
-        jLabel11.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel11.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel11.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel12.setToolTipText("");
-        jLabel12.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel12.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel12.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel13.setToolTipText("");
@@ -152,9 +155,6 @@ public class Nivel2 extends javax.swing.JFrame {
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel16.setToolTipText("");
-        jLabel16.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel16.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel16.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel17.setToolTipText("");
@@ -164,15 +164,9 @@ public class Nivel2 extends javax.swing.JFrame {
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel19.setToolTipText("");
-        jLabel19.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel19.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel19.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel20.setToolTipText("");
-        jLabel20.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel20.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel20.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel21.setToolTipText("");
@@ -182,9 +176,6 @@ public class Nivel2 extends javax.swing.JFrame {
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel23.setToolTipText("");
-        jLabel23.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel23.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel23.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel24.setToolTipText("");
@@ -195,9 +186,6 @@ public class Nivel2 extends javax.swing.JFrame {
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel26.setToolTipText("");
-        jLabel26.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel26.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel26.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel27.setToolTipText("");
@@ -210,33 +198,18 @@ public class Nivel2 extends javax.swing.JFrame {
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel30.setToolTipText("");
-        jLabel30.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel30.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel30.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel31.setToolTipText("");
-        jLabel31.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel31.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel31.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel32.setToolTipText("");
-        jLabel32.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel32.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel32.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel33.setToolTipText("");
-        jLabel33.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel33.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel33.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel34.setToolTipText("");
-        jLabel34.setMaximumSize(new java.awt.Dimension(80, 80));
-        jLabel34.setMinimumSize(new java.awt.Dimension(80, 80));
-        jLabel34.setPreferredSize(new java.awt.Dimension(80, 80));
 
         jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel35.setToolTipText("");
@@ -284,27 +257,16 @@ public class Nivel2 extends javax.swing.JFrame {
             }
         });
 
+        finalJuego.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        finalJuego.setForeground(new java.awt.Color(51, 204, 0));
+
         javax.swing.GroupLayout nivel1Layout = new javax.swing.GroupLayout(nivel1);
         nivel1.setLayout(nivel1Layout);
         nivel1Layout.setHorizontalGroup(
             nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(nivel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel36)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel37)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel38)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel39)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel40)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel41)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel42))
+                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(nivel1Layout.createSequentialGroup()
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -314,13 +276,13 @@ public class Nivel2 extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel12))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel13))
@@ -336,8 +298,8 @@ public class Nivel2 extends javax.swing.JFrame {
                             .addComponent(jLabel15)
                             .addComponent(jLabel22))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel23))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
                             .addComponent(jLabel24))
@@ -345,10 +307,10 @@ public class Nivel2 extends javax.swing.JFrame {
                             .addComponent(jLabel18)
                             .addComponent(jLabel25))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel26))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20)
                             .addComponent(jLabel27))
                         .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
@@ -358,19 +320,37 @@ public class Nivel2 extends javax.swing.JFrame {
                             .addComponent(jLabelPasos)
                             .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel35)))
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel36)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel37)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel38)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel39)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel40)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel41)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel42))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel29)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel30)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel31)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel32)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel33)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel34)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel35)))
+                        .addGap(18, 18, 18)
+                        .addComponent(finalJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(29, 29, 29))
             .addComponent(cerrarNivel1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -378,93 +358,98 @@ public class Nivel2 extends javax.swing.JFrame {
             nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(nivel1Layout.createSequentialGroup()
                 .addComponent(cerrarNivel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
                 .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGap(4, 4, 4)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel8))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel9))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel10))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel11))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel12))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel13))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel14))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabelMovimientos)
+                                .addGap(6, 6, 6)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel22))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel23))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel24))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel25))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel26))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel27))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel28))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabelPasos)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel8))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel35))
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel9))
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabel38)
+                            .addComponent(jLabel39)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel42)))
                     .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel13))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel14))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabelMovimientos)
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel22))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel24))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel25))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel27))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel28))
-                    .addGroup(nivel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabelPasos)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0)
-                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35))
-                .addGap(0, 0, 0)
-                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel38)
-                    .addComponent(jLabel39)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel41)
-                    .addComponent(jLabel42))
+                        .addGap(378, 378, 378)
+                        .addComponent(finalJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -540,6 +525,33 @@ public class Nivel2 extends javax.swing.JFrame {
         label[5][6] = jLabel42;
     }
     
+    public int[][] encontraMetas(String[][] tablero){
+        int posMetaX = 0;
+        int posMetaY = 0;
+        
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[0].length-1; j++) {
+                if(tablero[i][j].equals("X")){
+                    metas[posMetaX][posMetaY] = i;
+                    metas[posMetaX][posMetaY + 1] = j;
+                    posMetaX++;
+                }
+            }
+        }
+        return metas;
+    }
+    
+    public String[][] corregirTablero(String[][] tablero){
+        for (int i = 0; i < metas.length; i++) {
+            for (int j = 0; j < metas[0].length-1; j++) {
+                if(tablero[metas[i][j]][metas[i][j+1]].equals("0")){
+                    tablero[metas[i][j]][metas[i][j+1]] = "X";
+                }
+            }
+        }
+        return tablero;
+    }
+    
     public void actualizarTablero(String[][] tablero) {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[0].length; j++) {
@@ -551,57 +563,129 @@ public class Nivel2 extends javax.swing.JFrame {
                     label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\player80.png"));
                 }else if(tablero[i][j].equals("C")){
                     label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\box80.png"));
-                }else{
+                }else if(tablero[i][j].equals("0")){
                     label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\white.png"));
                 }
             }
         }
+        gano(tablero);
     }
     
-    public void player(String[][] posicionPlayer){
+    public void gano(String[][] tablero) {
+        if (tablero[metas[0][0]][metas[0][1]].equals("C") && tablero[metas[1][0]][metas[1][1]].equals("C")) {          
+            finalJuego.setText("GANASTE!");
+            juegoTerminado = true;
+        }
+    }
         
-    }
-    
     private class TAdapter extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
+            if (!juegoTerminado) {
+                int key = e.getKeyCode();
 
-            int key = e.getKeyCode();
+                switch (key) {
 
-            switch (key) {
+                    case KeyEvent.VK_LEFT:
+                        if (tablero[posX][posY - 1].equals("0") || tablero[posX][posY - 1].equals("X")) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posY = posY - 1;
+                            tablero[posX][posY] = "P";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else if (tablero[posX][posY - 1].equals("C") && (tablero[posX][posY - 2].equals("0") || tablero[posX][posY - 2].equals("X"))) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posY = posY - 1;
+                            tablero[posX][posY] = "P";
+                            tablero[posX][posY - 1] = "C";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else {
+                            break;
+                        }
 
-                case KeyEvent.VK_LEFT:
-                    pasos++;
-                    jLabel43.setText(Integer.toString(pasos));
-                    tablero[5][3] = "C";
-                    actualizarTablero(tablero);
-                    
-                    break;
+                    case KeyEvent.VK_RIGHT:
+                        if (tablero[posX][posY + 1].equals("0") || tablero[posX][posY + 1].equals("X")) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posY = posY + 1;
+                            tablero[posX][posY] = "P";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else if (tablero[posX][posY + 1].equals("C") && (tablero[posX][posY + 2].equals("0") || tablero[posX][posY + 2].equals("X"))) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posY = posY + 1;
+                            tablero[posX][posY] = "P";
+                            tablero[posX][posY + 1] = "C";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else {
+                            break;
+                        }
 
-                case KeyEvent.VK_RIGHT:
-                    pasos++;
-                    jLabel43.setText(Integer.toString(pasos));
-                    tablero[5][3] = "P";
-                    actualizarTablero(tablero);
-                    break;
+                    case KeyEvent.VK_UP:
+                        if (tablero[posX - 1][posY].equals("0") || tablero[posX - 1][posY].equals("X")) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posX = posX - 1;
+                            tablero[posX][posY] = "P";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else if (tablero[posX - 1][posY].equals("C") && (tablero[posX - 2][posY].equals("0") || tablero[posX - 2][posY].equals("X"))) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posX = posX - 1;
+                            tablero[posX][posY] = "P";
+                            tablero[posX - 1][posY] = "C";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else {
+                            break;
+                        }
 
-                case KeyEvent.VK_UP:
-                    pasos++;
-                    jLabel43.setText(Integer.toString(pasos));
-                    tablero[5][3] = "W";
-                    actualizarTablero(tablero);
-                    break;
+                    case KeyEvent.VK_DOWN:
+                        if (tablero[posX + 1][posY].equals("0") || tablero[posX + 1][posY].equals("X")) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posX = posX + 1;
+                            tablero[posX][posY] = "P";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else if (tablero[posX + 1][posY].equals("C") && (tablero[posX + 2][posY].equals("0") || tablero[posX + 2][posY].equals("X"))) {
+                            tablero[posX][posY] = "0";
+                            pasos++;
+                            jLabel43.setText(Integer.toString(pasos));
+                            posX = posX + 1;
+                            tablero[posX][posY] = "P";
+                            tablero[posX + 1][posY] = "C";
+                            actualizarTablero(corregirTablero(tablero));
+                            gano(corregirTablero(tablero));
+                            break;
+                        } else {
+                            break;
+                        }
 
-                case KeyEvent.VK_DOWN:
-                    pasos++;
-                    jLabel43.setText(Integer.toString(pasos));
-                    tablero[5][3] = "X";
-                    actualizarTablero(tablero);
-                    break;
-
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
             repaint();
         }
@@ -609,6 +693,7 @@ public class Nivel2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cerrarNivel1;
+    private javax.swing.JLabel finalJuego;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

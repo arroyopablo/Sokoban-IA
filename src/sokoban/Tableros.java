@@ -178,8 +178,7 @@ public class Tableros extends javax.swing.JFrame {
             nivel2.llenarTablero();
             nivel2.llenarPosiciones();
             
-            Nivel2 nivel2UI = new Nivel2(nivel2.tableroFinal());        
-            nivel2UI.player(nivel2.verCadenaPosiciones());
+            Nivel2 nivel2UI = new Nivel2(nivel2.tableroFinal(), Integer.parseInt(nivel2.cadenaPosiciones()[0][0]) , Integer.parseInt(nivel2.cadenaPosiciones()[0][1]));        
             nivel2UI.setVisible(true);
             nivel2UI.setLocationRelativeTo(null);
             dispose();

@@ -113,6 +113,10 @@ public class Niveles {
         return posiciones;
     }
     
+    public String[][] cadenaPosiciones(){
+        return posiciones;
+    }
+    
     public String[][] tableroFinal(){        
         tablero[Integer.parseInt(posiciones[0][0])][Integer.parseInt(posiciones[0][1])]= "P";
         tablero[Integer.parseInt(posiciones[1][0])][Integer.parseInt(posiciones[1][1])]= "C";
