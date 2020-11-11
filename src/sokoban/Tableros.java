@@ -169,12 +169,12 @@ public class Tableros extends javax.swing.JFrame {
     private void jButtonNivel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel1MouseClicked
         try {
             String rutaNivel1 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel1.txt";
-            Niveles nivel1 = new Niveles(rutaNivel1, 6, 6);
+            Niveles nivel1 = new Niveles(rutaNivel1, 6, 6, 3);
             nivel1.leerArchivo();
             nivel1.llenarTablero();
             nivel1.llenarPosiciones();
             
-            Nivel1 nivel1UI = new Nivel1(nivel1.tableroFinal(), Integer.parseInt(nivel1.cadenaPosiciones()[0][0]) , Integer.parseInt(nivel1.cadenaPosiciones()[0][1]));        
+            Nivel1 nivel1UI = new Nivel1(nivel1.tablero(), nivel1.posiciones(), 3);        
             nivel1UI.setVisible(true);
             nivel1UI.setLocationRelativeTo(null);
             dispose();
@@ -186,12 +186,12 @@ public class Tableros extends javax.swing.JFrame {
     private void jButtonNivel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel2MouseClicked
         try {
             String rutaNivel2 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel2.txt";
-            Niveles nivel2 = new Niveles(rutaNivel2, 6, 7);
+            Niveles nivel2 = new Niveles(rutaNivel2, 6, 7, 3);
             nivel2.leerArchivo();
             nivel2.llenarTablero();
             nivel2.llenarPosiciones();
             
-            Nivel2 nivel2UI = new Nivel2(nivel2.tableroFinal(), Integer.parseInt(nivel2.cadenaPosiciones()[0][0]) , Integer.parseInt(nivel2.cadenaPosiciones()[0][1]));        
+            Nivel2 nivel2UI = new Nivel2(nivel2.tablero(), nivel2.posiciones(), 3);  
             nivel2UI.setVisible(true);
             nivel2UI.setLocationRelativeTo(null);
             dispose();

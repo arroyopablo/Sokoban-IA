@@ -18,14 +18,16 @@ public class Niveles {
     String rutaArchivo = "";
     int fila;
     int columna;
+    int filaPosiciones;
     String tablero[][] = null;
     String posiciones[][] = null;
     String cadenaTablero[] = null;
     String cadenaPosiciones[] = null;    
     
-    public Niveles(String rutaIn, int filaIn, int columnaIn){
+    public Niveles(String rutaIn, int filaIn, int columnaIn, int filaPosicionesIn){
         rutaArchivo = rutaIn;
         fila = filaIn;
+        filaPosiciones = filaPosicionesIn;
         columna = columnaIn;  
         cadenaTablero = new String[fila*columna];
         cadenaPosiciones = new String[6];
@@ -82,7 +84,7 @@ public class Niveles {
     }
     
      public void llenarPosiciones() {
-        posiciones = new String[3][2];
+        posiciones = new String[filaPosiciones][2];
         int n = 0;
         for (int i = 0; i < posiciones.length; i++) {
             for (int j = 0; j < posiciones[0].length; j++) {
@@ -92,14 +94,16 @@ public class Niveles {
         }
     }
     
-    public String[][] verTablero() {
+    public void verTablero() {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[0].length; j++) {
                 System.out.print(tablero[i][j]);
             }
             System.out.println("");
-        }
-        
+        }        
+    }
+    
+    public String[][] tablero() {
         return tablero;
     }
     
@@ -113,15 +117,7 @@ public class Niveles {
         return posiciones;
     }
     
-    public String[][] cadenaPosiciones(){
+    public String[][] posiciones(){
         return posiciones;
-    }
-    
-    public String[][] tableroFinal(){        
-        tablero[Integer.parseInt(posiciones[0][0])][Integer.parseInt(posiciones[0][1])]= "P";
-        tablero[Integer.parseInt(posiciones[1][0])][Integer.parseInt(posiciones[1][1])]= "C";
-        tablero[Integer.parseInt(posiciones[2][0])][Integer.parseInt(posiciones[2][1])]= "C";
-        
-        return tablero;
-    }
+    }    
 }

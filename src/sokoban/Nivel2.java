@@ -21,24 +21,27 @@ public class Nivel2 extends javax.swing.JFrame {
     JLabel[][] label = new JLabel[6][7];  
     ImageIcon image;
     String [][] tablero = new String[6][7];
+    String [][] posiciones = null;
     int [][] metas = new int[2][2];
     boolean juegoTerminado;
     /**
      * Creates new form Nivel
      * @param tableroIn
-     * @param posicionX
-     * @param posicionY
+     * @param posicionesIn
+     * @param filaPosicionesIn
      */
-    public Nivel2(String[][] tableroIn,int posicionX, int posicionY) {
+    public Nivel2(String[][] tableroIn, String[][] posicionesIn, int filaPosicionesIn) {
         initComponents();
         labels();
         addKeyListener(new TAdapter());
         setFocusable(true);
         tablero = tableroIn;
         encontraMetas(tablero);
-        actualizarTablero(tablero);
-        posX = posicionX;
-        posY = posicionY;
+        posX = Integer.parseInt(posicionesIn[0][0]);
+        posY = Integer.parseInt(posicionesIn[0][1]);
+        posiciones = new String[filaPosicionesIn][2];
+        posiciones = posicionesIn;
+        tableroInicial(tablero, posiciones);
         juegoTerminado = false;
     }
 
@@ -538,6 +541,13 @@ public class Nivel2 extends javax.swing.JFrame {
             }
         }
         return metas;
+    }
+    
+    public void tableroInicial(String[][] tablero, String[][] posiciones) {
+        tablero[Integer.parseInt(posiciones[0][0])][Integer.parseInt(posiciones[0][1])] = "P";
+        tablero[Integer.parseInt(posiciones[1][0])][Integer.parseInt(posiciones[1][1])] = "C";
+        tablero[Integer.parseInt(posiciones[2][0])][Integer.parseInt(posiciones[2][1])] = "C";
+        actualizarTablero(tablero);
     }
     
     public String[][] corregirTablero(String[][] tablero){
