@@ -14,25 +14,25 @@ import javax.swing.JLabel;
  *
  * @author Pablo Andres A
  */
-public class Nivel2 extends javax.swing.JFrame {
+public class Nivel1 extends javax.swing.JFrame {
     int pasos = 0;
     int posX;
     int posY;
-    JLabel[][] label = new JLabel[6][7];  
+    JLabel[][] label = new JLabel[6][6];  
     ImageIcon image;
-    String [][] tablero = new String[6][7];
+    String [][] tablero = new String[6][6];
     int [][] metas = new int[2][2];
     boolean juegoTerminado;
     /**
-     * Creates new form Nivel
+     * Creates new form Nivel1
      * @param tableroIn
      * @param posicionX
      * @param posicionY
      */
-    public Nivel2(String[][] tableroIn,int posicionX, int posicionY) {
+    public Nivel1(String[][] tableroIn,int posicionX, int posicionY) {
         initComponents();
         labels();
-        addKeyListener(new TAdapter());
+        addKeyListener(new Nivel1.TAdapter());
         setFocusable(true);
         tablero = tableroIn;
         encontraMetas(tablero);
@@ -51,7 +51,7 @@ public class Nivel2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nivel2 = new javax.swing.JPanel();
+        nivel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -88,12 +88,6 @@ public class Nivel2 extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabelMovimientos = new javax.swing.JLabel();
         jLabelPasos = new javax.swing.JLabel();
@@ -101,11 +95,11 @@ public class Nivel2 extends javax.swing.JFrame {
         cerrarNivel1 = new javax.swing.JLabel();
         finalJuego = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        nivel2.setBackground(new java.awt.Color(255, 255, 255));
-        nivel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        nivel1.setBackground(new java.awt.Color(255, 255, 255));
+        nivel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -216,24 +210,6 @@ public class Nivel2 extends javax.swing.JFrame {
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel36.setToolTipText("");
 
-        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
-        jLabel37.setToolTipText("");
-
-        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
-        jLabel38.setToolTipText("");
-
-        jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
-        jLabel39.setToolTipText("");
-
-        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
-        jLabel40.setToolTipText("");
-
-        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
-        jLabel41.setToolTipText("");
-
-        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
-        jLabel42.setToolTipText("");
-
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -259,197 +235,180 @@ public class Nivel2 extends javax.swing.JFrame {
         finalJuego.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         finalJuego.setForeground(new java.awt.Color(51, 204, 0));
 
-        javax.swing.GroupLayout nivel2Layout = new javax.swing.GroupLayout(nivel2);
-        nivel2.setLayout(nivel2Layout);
-        nivel2Layout.setHorizontalGroup(
-            nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nivel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(nivel2Layout.createSequentialGroup()
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout nivel1Layout = new javax.swing.GroupLayout(nivel1);
+        nivel1.setLayout(nivel1Layout);
+        nivel1Layout.setHorizontalGroup(
+            nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nivel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(nivel1Layout.createSequentialGroup()
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel8))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel9))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel10))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel11))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel12))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel13))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel14))
-                        .addGap(18, 18, 18)
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7))
+                        .addGap(0, 0, 0)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel6))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel9)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel10)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel11)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel12)))
+                        .addGap(100, 100, 100)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelMovimientos)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(nivel2Layout.createSequentialGroup()
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel22))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel23))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel24))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel25))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(nivel1Layout.createSequentialGroup()
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
-                            .addComponent(jLabel26))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel27))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel28))
-                        .addGap(18, 18, 18)
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13))
+                        .addGap(0, 0, 0)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel21)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel22)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel23)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel24))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel15)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel16)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel17)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel18)))
+                        .addGap(70, 70, 70)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelPasos)
                             .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(nivel2Layout.createSequentialGroup()
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel36)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel37)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel38)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel39)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel40)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel41)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel42))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel29)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel30)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel31)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel32)
-                                .addGap(0, 0, 0)
+                    .addGroup(nivel1Layout.createSequentialGroup()
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel25))
+                        .addGap(0, 0, 0)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel26))
+                        .addGap(0, 0, 0)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(nivel1Layout.createSequentialGroup()
                                 .addComponent(jLabel33)
                                 .addGap(0, 0, 0)
                                 .addComponent(jLabel34)
                                 .addGap(0, 0, 0)
-                                .addComponent(jLabel35)))
-                        .addGap(18, 18, 18)
+                                .addComponent(jLabel35))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel28)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel29)))
+                        .addGap(0, 0, 0)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel30))
+                        .addGap(100, 100, 100)
                         .addComponent(finalJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(29, 29, 29))
             .addComponent(cerrarNivel1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-        nivel2Layout.setVerticalGroup(
-            nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nivel2Layout.createSequentialGroup()
+        nivel1Layout.setVerticalGroup(
+            nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nivel1Layout.createSequentialGroup()
                 .addComponent(cerrarNivel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(nivel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel8))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel9))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel10))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel11))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel12))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel13))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel14))
-                            .addGroup(nivel2Layout.createSequentialGroup()
+                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(nivel1Layout.createSequentialGroup()
+                        .addGap(378, 378, 378)
+                        .addComponent(finalJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(nivel1Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(nivel1Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jLabelMovimientos)
                                 .addGap(6, 6, 6)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nivel1Layout.createSequentialGroup()
+                                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel1))
                                 .addGap(0, 0, 0)
-                                .addComponent(jLabel22))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel23))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel24))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel25))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel26))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel27))
-                            .addGroup(nivel2Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel28))
-                            .addGroup(nivel2Layout.createSequentialGroup()
+                                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))))
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(nivel1Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabelPasos)
                                 .addGap(0, 0, 0)
-                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(nivel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(0, 0, 0)
+                                .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel24)
+                                            .addComponent(jLabel23))
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)))))
                         .addGap(0, 0, 0)
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel29)
                             .addComponent(jLabel30)
-                            .addComponent(jLabel31)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel35))
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel25))
                         .addGap(0, 0, 0)
-                        .addGroup(nivel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel37)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel39)
-                            .addComponent(jLabel40)
-                            .addComponent(jLabel41)
-                            .addComponent(jLabel42)))
-                    .addGroup(nivel2Layout.createSequentialGroup()
-                        .addGap(378, 378, 378)
-                        .addComponent(finalJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -458,14 +417,14 @@ public class Nivel2 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(nivel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nivel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(nivel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nivel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -486,42 +445,36 @@ public class Nivel2 extends javax.swing.JFrame {
         label[0][3] = jLabel4;
         label[0][4] = jLabel5;
         label[0][5] = jLabel6;
-        label[0][6] = jLabel7;
-        label[1][0] = jLabel8;
-        label[1][1] = jLabel9;
-        label[1][2] = jLabel10;
-        label[1][3] = jLabel11;
-        label[1][4] = jLabel12;
-        label[1][5] = jLabel13;
-        label[1][6] = jLabel14;
-        label[2][0] = jLabel15;
-        label[2][1] = jLabel16;
-        label[2][2] = jLabel17;
-        label[2][3] = jLabel18;
-        label[2][4] = jLabel19;
-        label[2][5] = jLabel20;
-        label[2][6] = jLabel21;
-        label[3][0] = jLabel22;
-        label[3][1] = jLabel23;
-        label[3][2] = jLabel24;
-        label[3][3] = jLabel25;
-        label[3][4] = jLabel26;
-        label[3][5] = jLabel27;
-        label[3][6] = jLabel28;
-        label[4][0] = jLabel29;
-        label[4][1] = jLabel30;
-        label[4][2] = jLabel31;
-        label[4][3] = jLabel32;
-        label[4][4] = jLabel33;
-        label[4][5] = jLabel34;
-        label[4][6] = jLabel35;
-        label[5][0] = jLabel36;
-        label[5][1] = jLabel37;
-        label[5][2] = jLabel38;
-        label[5][3] = jLabel39;
-        label[5][4] = jLabel40;
-        label[5][5] = jLabel41;
-        label[5][6] = jLabel42;
+        label[1][0] = jLabel7;
+        label[1][1] = jLabel8;
+        label[1][2] = jLabel9;
+        label[1][3] = jLabel10;
+        label[1][4] = jLabel11;
+        label[1][5] = jLabel12;
+        label[2][0] = jLabel13;
+        label[2][1] = jLabel14;
+        label[2][2] = jLabel15;
+        label[2][3] = jLabel16;
+        label[2][4] = jLabel17;
+        label[2][5] = jLabel18;
+        label[3][0] = jLabel19;
+        label[3][1] = jLabel20;
+        label[3][2] = jLabel21;
+        label[3][3] = jLabel22;
+        label[3][4] = jLabel23;
+        label[3][5] = jLabel24;
+        label[4][0] = jLabel25;
+        label[4][1] = jLabel26;
+        label[4][2] = jLabel27;
+        label[4][3] = jLabel28;
+        label[4][4] = jLabel29;
+        label[4][5] = jLabel30;
+        label[5][0] = jLabel31;
+        label[5][1] = jLabel32;
+        label[5][2] = jLabel33;
+        label[5][3] = jLabel34;
+        label[5][4] = jLabel35;
+        label[5][5] = jLabel36;
     }
     
     public int[][] encontraMetas(String[][] tablero){
@@ -552,6 +505,7 @@ public class Nivel2 extends javax.swing.JFrame {
     }
     
     public void actualizarTablero(String[][] tablero) {
+        corregirTablero(tablero);
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[0].length; j++) {
                 if(tablero[i][j].equals("W")){
@@ -723,13 +677,7 @@ public class Nivel2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -739,6 +687,6 @@ public class Nivel2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMovimientos;
     private javax.swing.JLabel jLabelPasos;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel nivel2;
+    private javax.swing.JPanel nivel1;
     // End of variables declaration//GEN-END:variables
 }
