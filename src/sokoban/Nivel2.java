@@ -15,18 +15,22 @@ import javax.swing.JLabel;
  *
  * @author Pablo Andres A
  */
-public class Nivel1 extends javax.swing.JFrame {
+public class Nivel2 extends javax.swing.JFrame {
     int pasos = 0;
-    JLabel[] label = new JLabel[42];  
+    JLabel[][] label = new JLabel[6][7];  
     ImageIcon image;
+    String [][] tablero = new String[6][7];
     /**
      * Creates new form Nivel
+     * @param tableroIn
      */
-    public Nivel1() {
+    public Nivel2(String[][] tableroIn) {
         initComponents();
         labels();
         addKeyListener(new TAdapter());
         setFocusable(true);
+        tablero = tableroIn;
+        actualizarTablero(tablero);
     }
 
     /**
@@ -74,9 +78,6 @@ public class Nivel1 extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabelMovimientos = new javax.swing.JLabel();
-        jLabelPasos = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
@@ -84,143 +85,182 @@ public class Nivel1 extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabelMovimientos = new javax.swing.JLabel();
+        jLabelPasos = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
+        cerrarNivel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         nivel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel1.setToolTipText("");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel3.setToolTipText("");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel4.setToolTipText("");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel5.setToolTipText("");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel6.setToolTipText("");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel7.setToolTipText("");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel8.setToolTipText("");
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box80.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel9.setToolTipText("");
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel10.setToolTipText("");
         jLabel10.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel10.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel10.setPreferredSize(new java.awt.Dimension(80, 80));
 
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel11.setToolTipText("");
         jLabel11.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel11.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel11.setPreferredSize(new java.awt.Dimension(80, 80));
 
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel12.setToolTipText("");
         jLabel12.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel12.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel12.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel13.setToolTipText("");
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel14.setToolTipText("");
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel15.setToolTipText("");
 
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel16.setToolTipText("");
         jLabel16.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel16.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel16.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box80.png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel17.setToolTipText("");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/player80.png"))); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel18.setToolTipText("");
 
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel19.setToolTipText("");
         jLabel19.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel19.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 80));
 
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel20.setToolTipText("");
         jLabel20.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel20.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel20.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel21.setToolTipText("");
 
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel22.setToolTipText("");
 
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel23.setToolTipText("");
         jLabel23.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel23.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel23.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel24.setToolTipText("");
 
         jLabel25.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Red_Point80.gif"))); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel25.setToolTipText("");
 
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel26.setToolTipText("");
         jLabel26.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel26.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel26.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Red_Point80.gif"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel27.setToolTipText("");
 
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel28.setToolTipText("");
 
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel29.setToolTipText("");
 
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel30.setToolTipText("");
         jLabel30.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel30.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel30.setPreferredSize(new java.awt.Dimension(80, 80));
 
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel31.setToolTipText("");
         jLabel31.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel31.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel31.setPreferredSize(new java.awt.Dimension(80, 80));
 
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel32.setToolTipText("");
         jLabel32.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel32.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel32.setPreferredSize(new java.awt.Dimension(80, 80));
 
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel33.setToolTipText("");
         jLabel33.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel33.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel33.setPreferredSize(new java.awt.Dimension(80, 80));
 
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel34.setToolTipText("");
         jLabel34.setMaximumSize(new java.awt.Dimension(80, 80));
         jLabel34.setMinimumSize(new java.awt.Dimension(80, 80));
         jLabel34.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
         jLabel35.setToolTipText("");
+
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
+        jLabel36.setToolTipText("");
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
+        jLabel37.setToolTipText("");
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
+        jLabel38.setToolTipText("");
+
+        jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
+        jLabel39.setToolTipText("");
+
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
+        jLabel40.setToolTipText("");
+
+        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
+        jLabel41.setToolTipText("");
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/white.png"))); // NOI18N
+        jLabel42.setToolTipText("");
 
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -233,30 +273,16 @@ public class Nivel1 extends javax.swing.JFrame {
         jLabelPasos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelPasos.setText("Pasos:");
 
-        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
-        jLabel36.setToolTipText("");
-
-        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
-        jLabel37.setToolTipText("");
-
-        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
-        jLabel38.setToolTipText("");
-
-        jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
-        jLabel39.setToolTipText("");
-
-        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
-        jLabel40.setToolTipText("");
-
-        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
-        jLabel41.setToolTipText("");
-
-        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wall80.png"))); // NOI18N
-        jLabel42.setToolTipText("");
-
         jLabel43.setBackground(new java.awt.Color(255, 255, 255));
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel43.setText("0");
+
+        cerrarNivel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exit icon.png"))); // NOI18N
+        cerrarNivel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarNivel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout nivel1Layout = new javax.swing.GroupLayout(nivel1);
         nivel1.setLayout(nivel1Layout);
@@ -346,11 +372,13 @@ public class Nivel1 extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jLabel35)))
                 .addGap(29, 29, 29))
+            .addComponent(cerrarNivel1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         nivel1Layout.setVerticalGroup(
             nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(nivel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addComponent(cerrarNivel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(nivel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -459,50 +487,79 @@ public class Nivel1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cerrarNivel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarNivel1MouseClicked
+        dispose();
+        Tableros tablero = new Tableros();
+        tablero.setVisible(true);
+        tablero.setLocationRelativeTo(null);
+    }//GEN-LAST:event_cerrarNivel1MouseClicked
     
     public void labels(){
-        label[0] = jLabel1;
-        label[1] = jLabel2;
-        label[2] = jLabel3;
-        label[3] = jLabel4;
-        label[4] = jLabel5;
-        label[5] = jLabel6;
-        label[6] = jLabel7;
-        label[7] = jLabel8;
-        label[8] = jLabel9;
-        label[9] = jLabel10;
-        label[10] = jLabel11;
-        label[11] = jLabel12;
-        label[12] = jLabel13;
-        label[13] = jLabel14;
-        label[14] = jLabel15;
-        label[15] = jLabel16;
-        label[16] = jLabel17;
-        label[17] = jLabel18;
-        label[18] = jLabel19;
-        label[19] = jLabel20;
-        label[20] = jLabel21;
-        label[21] = jLabel22;
-        label[22] = jLabel23;
-        label[23] = jLabel24;
-        label[24] = jLabel25;
-        label[25] = jLabel26;
-        label[26] = jLabel27;
-        label[27] = jLabel28;
-        label[28] = jLabel29;
-        label[29] = jLabel30;
-        label[30] = jLabel31;
-        label[31] = jLabel32;
-        label[32] = jLabel33;
-        label[33] = jLabel34;
-        label[34] = jLabel35;
-        label[35] = jLabel36;
-        label[36] = jLabel37;
-        label[37] = jLabel38;
-        label[38] = jLabel39;
-        label[39] = jLabel40;
-        label[40] = jLabel41;
-        label[41] = jLabel42;
+        label[0][0] = jLabel1;
+        label[0][1] = jLabel2;
+        label[0][2] = jLabel3;
+        label[0][3] = jLabel4;
+        label[0][4] = jLabel5;
+        label[0][5] = jLabel6;
+        label[0][6] = jLabel7;
+        label[1][0] = jLabel8;
+        label[1][1] = jLabel9;
+        label[1][2] = jLabel10;
+        label[1][3] = jLabel11;
+        label[1][4] = jLabel12;
+        label[1][5] = jLabel13;
+        label[1][6] = jLabel14;
+        label[2][0] = jLabel15;
+        label[2][1] = jLabel16;
+        label[2][2] = jLabel17;
+        label[2][3] = jLabel18;
+        label[2][4] = jLabel19;
+        label[2][5] = jLabel20;
+        label[2][6] = jLabel21;
+        label[3][0] = jLabel22;
+        label[3][1] = jLabel23;
+        label[3][2] = jLabel24;
+        label[3][3] = jLabel25;
+        label[3][4] = jLabel26;
+        label[3][5] = jLabel27;
+        label[3][6] = jLabel28;
+        label[4][0] = jLabel29;
+        label[4][1] = jLabel30;
+        label[4][2] = jLabel31;
+        label[4][3] = jLabel32;
+        label[4][4] = jLabel33;
+        label[4][5] = jLabel34;
+        label[4][6] = jLabel35;
+        label[5][0] = jLabel36;
+        label[5][1] = jLabel37;
+        label[5][2] = jLabel38;
+        label[5][3] = jLabel39;
+        label[5][4] = jLabel40;
+        label[5][5] = jLabel41;
+        label[5][6] = jLabel42;
+    }
+    
+    public void actualizarTablero(String[][] tablero) {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[0].length; j++) {
+                if(tablero[i][j].equals("W")){
+                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\wall80.png"));
+                }else if(tablero[i][j].equals("X")){
+                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\Red_Point80.gif"));
+                }else if(tablero[i][j].equals("P")){
+                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\player80.png"));
+                }else if(tablero[i][j].equals("C")){
+                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\box80.png"));
+                }else{
+                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\white.png"));
+                }
+            }
+        }
+    }
+    
+    public void player(String[][] posicionPlayer){
+        
     }
     
     private class TAdapter extends KeyAdapter {
@@ -517,25 +574,30 @@ public class Nivel1 extends javax.swing.JFrame {
                 case KeyEvent.VK_LEFT:
                     pasos++;
                     jLabel43.setText(Integer.toString(pasos));
-                    label[32].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\wall80.png"));                
+                    tablero[5][3] = "C";
+                    actualizarTablero(tablero);
+                    
                     break;
 
                 case KeyEvent.VK_RIGHT:
                     pasos++;
                     jLabel43.setText(Integer.toString(pasos));
-                    label[32].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\white.png"));                
+                    tablero[5][3] = "P";
+                    actualizarTablero(tablero);
                     break;
 
                 case KeyEvent.VK_UP:
                     pasos++;
                     jLabel43.setText(Integer.toString(pasos));
-                    label[32].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\wall80.png"));                
+                    tablero[5][3] = "W";
+                    actualizarTablero(tablero);
                     break;
 
                 case KeyEvent.VK_DOWN:
                     pasos++;
                     jLabel43.setText(Integer.toString(pasos));
-                    label[32].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\white.png"));
+                    tablero[5][3] = "X";
+                    actualizarTablero(tablero);
                     break;
 
                 default:
@@ -544,43 +606,9 @@ public class Nivel1 extends javax.swing.JFrame {
             repaint();
         }
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Nivel1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Nivel1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Nivel1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Nivel1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Nivel1().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cerrarNivel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -5,6 +5,10 @@
  */
 package sokoban;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Pablo Andres A
@@ -30,11 +34,13 @@ public class Tableros extends javax.swing.JFrame {
         nivel1 = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
         jButtonNivel1 = new javax.swing.JButton();
-        jButtonNivel = new javax.swing.JButton();
+        jButtonNivel2 = new javax.swing.JButton();
         jButtonNivel3 = new javax.swing.JButton();
         jButtonNivel4 = new javax.swing.JButton();
+        cerrar = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         nivel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -46,22 +52,27 @@ public class Tableros extends javax.swing.JFrame {
 
         jButtonNivel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jButtonNivel1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNivel1.setText("NIVEL 2");
+        jButtonNivel1.setText("NIVEL 1");
         jButtonNivel1.setBorderPainted(false);
         jButtonNivel1.setContentAreaFilled(false);
+        jButtonNivel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonNivel1.setFocusable(false);
-        jButtonNivel1.setOpaque(false);
-
-        jButtonNivel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jButtonNivel.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNivel.setText("NIVEL 1");
-        jButtonNivel.setBorderPainted(false);
-        jButtonNivel.setContentAreaFilled(false);
-        jButtonNivel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonNivel.setFocusable(false);
-        jButtonNivel.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonNivel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonNivelMouseClicked(evt);
+                jButtonNivel1MouseClicked(evt);
+            }
+        });
+
+        jButtonNivel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jButtonNivel2.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonNivel2.setText("NIVEL 2");
+        jButtonNivel2.setBorderPainted(false);
+        jButtonNivel2.setContentAreaFilled(false);
+        jButtonNivel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonNivel2.setFocusable(false);
+        jButtonNivel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonNivel2MouseClicked(evt);
             }
         });
 
@@ -70,6 +81,7 @@ public class Tableros extends javax.swing.JFrame {
         jButtonNivel3.setText("NIVEL 3");
         jButtonNivel3.setBorderPainted(false);
         jButtonNivel3.setContentAreaFilled(false);
+        jButtonNivel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonNivel3.setFocusable(false);
 
         jButtonNivel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -77,7 +89,15 @@ public class Tableros extends javax.swing.JFrame {
         jButtonNivel4.setText("NIVEL 4");
         jButtonNivel4.setBorderPainted(false);
         jButtonNivel4.setContentAreaFilled(false);
+        jButtonNivel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonNivel4.setFocusable(false);
+
+        cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exit icon.png"))); // NOI18N
+        cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout nivel1Layout = new javax.swing.GroupLayout(nivel1);
         nivel1.setLayout(nivel1Layout);
@@ -93,13 +113,17 @@ public class Tableros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonNivel4)
-                    .addComponent(jButtonNivel1))
+                    .addComponent(jButtonNivel2))
                 .addGap(115, 115, 115))
             .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(nivel1Layout.createSequentialGroup()
                     .addGap(93, 93, 93)
-                    .addComponent(jButtonNivel)
+                    .addComponent(jButtonNivel1)
                     .addContainerGap(391, Short.MAX_VALUE)))
+            .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nivel1Layout.createSequentialGroup()
+                    .addGap(0, 629, Short.MAX_VALUE)
+                    .addComponent(cerrar)))
         );
         nivel1Layout.setVerticalGroup(
             nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +131,7 @@ public class Tableros extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(titulo)
                 .addGap(82, 82, 82)
-                .addComponent(jButtonNivel1)
+                .addComponent(jButtonNivel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNivel3)
@@ -116,8 +140,12 @@ public class Tableros extends javax.swing.JFrame {
             .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(nivel1Layout.createSequentialGroup()
                     .addGap(153, 153, 153)
-                    .addComponent(jButtonNivel)
+                    .addComponent(jButtonNivel1)
                     .addContainerGap(165, Short.MAX_VALUE)))
+            .addGroup(nivel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(nivel1Layout.createSequentialGroup()
+                    .addComponent(cerrar)
+                    .addGap(0, 337, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,11 +166,32 @@ public class Tableros extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonNivelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivelMouseClicked
-        Nivel1 nivel1 = new Nivel1();
-        nivel1.setVisible(true);        
-    }//GEN-LAST:event_jButtonNivelMouseClicked
+    private void jButtonNivel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel1MouseClicked
+        
+    }//GEN-LAST:event_jButtonNivel1MouseClicked
 
+    private void jButtonNivel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel2MouseClicked
+        try {
+            String rutaNivel2 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel2.txt";
+            Niveles nivel2 = new Niveles(rutaNivel2, 6, 7);
+            nivel2.leerArchivo();
+            nivel2.llenarTablero();
+            nivel2.llenarPosiciones();
+            
+            Nivel2 nivel2UI = new Nivel2(nivel2.tableroFinal());        
+            nivel2UI.player(nivel2.verCadenaPosiciones());
+            nivel2UI.setVisible(true);
+            nivel2UI.setLocationRelativeTo(null);
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Tableros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonNivel2MouseClicked
+
+    private void cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_cerrarMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -179,8 +228,9 @@ public class Tableros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonNivel;
+    private javax.swing.JLabel cerrar;
     private javax.swing.JButton jButtonNivel1;
+    private javax.swing.JButton jButtonNivel2;
     private javax.swing.JButton jButtonNivel3;
     private javax.swing.JButton jButtonNivel4;
     private javax.swing.JPanel nivel1;
