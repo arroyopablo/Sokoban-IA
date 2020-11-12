@@ -83,6 +83,11 @@ public class Tableros extends javax.swing.JFrame {
         jButtonNivel3.setContentAreaFilled(false);
         jButtonNivel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonNivel3.setFocusable(false);
+        jButtonNivel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonNivel3MouseClicked(evt);
+            }
+        });
 
         jButtonNivel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jButtonNivel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,6 +96,11 @@ public class Tableros extends javax.swing.JFrame {
         jButtonNivel4.setContentAreaFilled(false);
         jButtonNivel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonNivel4.setFocusable(false);
+        jButtonNivel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonNivel4MouseClicked(evt);
+            }
+        });
 
         cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exit icon.png"))); // NOI18N
         cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,6 +213,40 @@ public class Tableros extends javax.swing.JFrame {
     private void cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseClicked
         System.exit(0);
     }//GEN-LAST:event_cerrarMouseClicked
+
+    private void jButtonNivel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel3MouseClicked
+        try {
+            String rutaNivel3 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel3.txt";
+            Niveles nivel3 = new Niveles(rutaNivel3, 7, 7, 3);
+            nivel3.leerArchivo();
+            nivel3.llenarTablero();
+            nivel3.llenarPosiciones();
+            
+            Nivel3 nivel3UI = new Nivel3(nivel3.tablero(), nivel3.posiciones(), 3);  
+            nivel3UI.setVisible(true);
+            nivel3UI.setLocationRelativeTo(null);
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Tableros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonNivel3MouseClicked
+
+    private void jButtonNivel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel4MouseClicked
+        try {
+            String rutaNivel4 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel4.txt";
+            Niveles nivel4 = new Niveles(rutaNivel4, 7, 7, 4);
+            nivel4.leerArchivo();
+            nivel4.llenarTablero();
+            nivel4.llenarPosiciones();
+            
+            Nivel4 nivel4UI = new Nivel4(nivel4.tablero(), nivel4.posiciones(), 4);  
+            nivel4UI.setVisible(true);
+            nivel4UI.setLocationRelativeTo(null);
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Tableros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonNivel4MouseClicked
     
     /**
      * @param args the command line arguments

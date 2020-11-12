@@ -30,7 +30,7 @@ public class Niveles {
         filaPosiciones = filaPosicionesIn;
         columna = columnaIn;  
         cadenaTablero = new String[fila*columna];
-        cadenaPosiciones = new String[6];
+        cadenaPosiciones = new String[filaPosicionesIn*2];
     }
     
     public boolean contieneComa(String linea) {
