@@ -11,6 +11,7 @@ package sokoban;
  */
 public class Controlador {
     String[][] Tablero;
+    int[][] TableroNumVisitas;
     int[][] posJugador;
     int[][] posCaja;
     int[][] metas;
@@ -18,6 +19,14 @@ public class Controlador {
     
     public Controlador(String[][] t, int[][] p, int tamaño){
         Tablero = new String[t.length][t[0].length];
+        TableroNumVisitas = new int[t.length][t[0].length];
+        
+        for(int i=0; i<t.length;i++){
+            for(int j=0; j<t[0].length; j++){
+                TableroNumVisitas[i][j] = 0;
+            }
+        }        
+        
         posJugador = new int[1][2];
         posCaja = new int[tamaño-1][2];
         metas = new int[tamaño-1][2];        
@@ -120,23 +129,45 @@ public class Controlador {
             return posicionCaja;
         } else {
             if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil - 1, col) || esMeta(Tablero, fil - 1, col)) && direccion.equals("U")) {
-                posicionCaja[0][0] = fil - 1;
+                posicionCaja[0][0] = fil;
+                TableroNumVisitas[fil+1][col]++; 
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil + 1, col) || esMeta(Tablero, fil + 1, col)) && direccion.equals("D")) {
-                posicionCaja[0][0] = fil + 1;
+                posicionCaja[0][0] = fil;
+                TableroNumVisitas[fil-1][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col - 1) || esMeta(Tablero, fil, col - 1)) && direccion.equals("L")) {
-                posicionCaja[0][1] = col - 1;
+                posicionCaja[0][1] = col;
+                TableroNumVisitas[fil][col+1]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col + 1) || esMeta(Tablero, fil, col + 1)) && direccion.equals("R")) {
-                posicionCaja[0][1] = col + 1;
+                posicionCaja[0][1] = col;
+                TableroNumVisitas[fil][col-1]++;
             }
             return posicionCaja;
         }
     }
     
-    //funcion que verifica si una casilla ha sido recorrida antes
-    /*public boolean visitado(//fila a evaular, columna a evular, tablero de posiciones visitada(matriz)){
-        return false;
-    }*/
-
+    //funcion que verifica a partir de la matriz "TableroNumVisitas" si uns posicion ha sido visitada
+    public boolean visitado(int fila, int columna){
+        boolean comprobacion= false;
+        
+        //codigo aqui...
+        //if(TableroNumVisitas[fila][columna] == 0){
+        //  boolean false;    
+        //}else{
+        //  boolean true;
+        //}
+        
+        return comprobacion;
+    }
+    
+    //Esta la estoy haciendo yo___________________________________________________
+    public boolean validarMovimiento(){
+        boolean respuesta = false;
+        
+        //codigo aqui
+        
+        return respuesta;//
+    }
+    
     public boolean finalJuego(String[][] tablero) {
         int logrado = 0;
         for (int i = 0; i <= metas.length; i++) {
