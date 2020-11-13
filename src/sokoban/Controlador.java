@@ -58,8 +58,7 @@ public class Controlador {
             System.out.println("");
         }
     }
-    
-    public boolean caja(String[][] tablero, int fil, int col) {
+    public boolean Caja(String[][] tablero, int fil, int col) {
         boolean respuesta = false;
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[0].length; j++) {
@@ -68,6 +67,34 @@ public class Controlador {
                 }
             }
         }
+        return respuesta;
+    }
+     //Retorna falso o verdadero si en la posición (fil,col) hay un espacio
+     public boolean esEspacio(String[][] tablero, int fil, int col) {
+        boolean respuesta = false;
+        if (tablero[fil][col].equals("0")){
+            respuesta = true;}
+        return respuesta;
+    }
+     //Retorna falso o verdadero si en la posición (fil,col) es meta 
+    public boolean esMeta(String[][] tablero, int fil, int col) {
+        boolean respuesta = false;
+        if (tablero[fil][col].equals("X")){
+            respuesta = true;}
+        return respuesta;
+    }
+    //Retorna falso o verdadero si en la posición (fil,col) hay un muro
+    public boolean esMuro(String[][] tablero, int fil, int col) {
+        boolean respuesta = false;
+        if (tablero[fil][col].equals("W")){
+            respuesta = true;}
+        return respuesta;
+    }
+    //Retorna falso o verdadero si en la posición (fil,col) hay una caja
+    public boolean esCaja(String[][] tablero, int fil, int col) {
+        boolean respuesta = false;
+        if (tablero[fil][col].equals("C")){
+            respuesta = true;}
         return respuesta;
     }
     
