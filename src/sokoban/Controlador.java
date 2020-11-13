@@ -130,27 +130,23 @@ public class Controlador {
         } else {
             if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil - 1, col) || esMeta(Tablero, fil - 1, col)) && direccion.equals("U")) {
                 posicionCaja[0][0] = fil;
-                TableroNumVisitas[fil+1][col]++; 
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil + 1, col) || esMeta(Tablero, fil + 1, col)) && direccion.equals("D")) {
                 posicionCaja[0][0] = fil;
-                TableroNumVisitas[fil-1][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col - 1) || esMeta(Tablero, fil, col - 1)) && direccion.equals("L")) {
                 posicionCaja[0][1] = col;
-                TableroNumVisitas[fil][col+1]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col + 1) || esMeta(Tablero, fil, col + 1)) && direccion.equals("R")) {
                 posicionCaja[0][1] = col;
-                TableroNumVisitas[fil][col-1]++;
             }
             return posicionCaja;
         }
     }
     
     //funcion que verifica a partir de la matriz "TableroNumVisitas" si uns posicion ha sido visitada
-    public boolean visitado(int fila, int columna){
+    public boolean visitado(int fila, int cola){
         boolean comprobacion= false;
         
         //codigo aqui...
-        //if(TableroNumVisitas[fila][columna] == 0){
+        //if(TableroNumVisitas[fila][cola] == 0){
         //  boolean false;    
         //}else{
         //  boolean true;
@@ -160,13 +156,88 @@ public class Controlador {
     }
     
     //Esta la estoy haciendo yo___________________________________________________
-    public boolean validarMovimiento(){
+    /*public boolean validarMovimiento(int fil, int col, String direccion){
         boolean respuesta = false;
-        
-        //codigo aqui
-        
-        return respuesta;//
-    }
+        if (Tablero[fil][col].equals("W")) {
+            return false;
+        }
+
+        if (direccion.equals("U")){
+            if (esCaja(nodeBoxPos, fil, col)){
+                if (esCaja(nodeBoxPos, fil - 1, col)){
+                    return false;
+                }
+
+                if (Tablero[fil - 1][col].equals("W")){
+                    return false;
+                }
+
+                if (Tablero[fil - 2][col].equals("W") && Tablero[fil - 1][col - 1].equals("W") && Tablero[]){
+                    if (goals.__contains__([fil - 1, col])):
+                        return false;
+                }
+
+                if (Tablero[fil - 2][col] == 'W' and Tablero[fil - 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil - 1, col])):
+                        return false;
+
+            return true;
+            }
+
+        if direccion == 'D':
+            if esCaja(nodeBoxPos, fil, col):
+                if esCaja(nodeBoxPos, fil + 1, col):
+                    return false;
+
+                if Tablero[fil + 1][col] == 'W':
+                    return false;
+
+                if (Tablero[fil + 2][col] == 'W' and Tablero[fil + 1][col - 1] == 'W'):
+                    if not (goals.__contains__([fil+1,col])):
+                        return false;
+
+                if (Tablero[fil + 2][col] == 'W' and Tablero[fil + 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil + 1, col])):
+                        return false;
+
+            return true;
+
+        if direccion == 'R':
+            if esCaja(nodeBoxPos, fil, col): 
+                if esCaja(nodeBoxPos, fil, col + 1):
+                    return false;
+
+                if Tablero[fil][col + 1] == 'W':
+                    return false;
+
+                if (Tablero[fil][col + 2] == 'W' and Tablero[fil + 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil, col + 1])):
+                        return false;
+
+                if (Tablero[fil][col + 2] == 'W' and Tablero[fil - 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil, col + 1])):
+                        return false;
+
+            return true;
+
+        if direccion == 'L':
+            if esCaja(nodeBoxPos, fil, col):
+                if esCaja(nodeBoxPos, fil, col - 1):
+                    return false;
+
+                if Tablero[fil][col - 1] == 'W':
+                    return false;
+
+                if (Tablero[fil][col - 2] == 'W' and Tablero[fil + 1][col - 1] == 'W'):
+                    if not (goals.__contains__([fil,col - 1])):
+                        return false;
+
+                if (Tablero[fil][col - 2] == 'W' and Tablero[fil - 1][col - 1] == 'W'):
+                    if not (goals.__contains__([fil, col - 1])):
+                        return false;
+
+            return true;
+    }*/
     
     public boolean finalJuego(String[][] tablero) {
         int logrado = 0;
