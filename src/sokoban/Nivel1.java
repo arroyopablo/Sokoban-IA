@@ -521,15 +521,15 @@ public class Nivel1 extends javax.swing.JFrame {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[0].length; j++) {
                 if(tablero[i][j].equals("W")){
-                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\wall80.png"));
+                    label[i][j].setIcon(new ImageIcon("E:\\NetBeans\\SokobanE\\src\\imagenes\\wall80.png"));
                 }else if(tablero[i][j].equals("X")){
-                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\Red_Point80.gif"));
+                    label[i][j].setIcon(new ImageIcon("E:\\NetBeans\\SokobanE\\src\\imagenes\\Red_Point80.gif"));
                 }else if(tablero[i][j].equals("P")){
-                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\player80.png"));
+                    label[i][j].setIcon(new ImageIcon("E:\\NetBeans\\SokobanE\\src\\imagenes\\player80.png"));
                 }else if(tablero[i][j].equals("C")){
-                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\box80.png"));
+                    label[i][j].setIcon(new ImageIcon("E:\\NetBeans\\SokobanE\\src\\imagenes\\box80.png"));
                 }else if(tablero[i][j].equals("0")){
-                    label[i][j].setIcon(new ImageIcon("D:\\Descargas\\11 SEMESTRE\\INTELIGENCIA ARTIFICIAL\\Sokoban-IA\\src\\imagenes\\white.png"));
+                    label[i][j].setIcon(new ImageIcon("E:\\NetBeans\\SokobanE\\src\\imagenes\\white.png"));
                 }
             }
         }
