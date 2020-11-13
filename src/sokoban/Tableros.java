@@ -183,6 +183,9 @@ public class Tableros extends javax.swing.JFrame {
             nivel1.leerArchivo();
             nivel1.llenarTablero();
             nivel1.llenarPosiciones();
+            Controlador c1= new Controlador(nivel1.tablero(), nivel1.posiciones(), 3);
+            c1.verTablero();
+            c1.verPos();
             
             Nivel1 nivel1UI = new Nivel1(nivel1.tablero(), nivel1.posiciones(), 3);        
             nivel1UI.setVisible(true);
@@ -200,6 +203,9 @@ public class Tableros extends javax.swing.JFrame {
             nivel2.leerArchivo();
             nivel2.llenarTablero();
             nivel2.llenarPosiciones();
+            Controlador c2= new Controlador(nivel2.tablero(), nivel2.posiciones(), 3);
+            c2.verTablero();
+            c2.verPos();
             
             Nivel2 nivel2UI = new Nivel2(nivel2.tablero(), nivel2.posiciones(), 3);  
             nivel2UI.setVisible(true);
@@ -221,6 +227,9 @@ public class Tableros extends javax.swing.JFrame {
             nivel3.leerArchivo();
             nivel3.llenarTablero();
             nivel3.llenarPosiciones();
+            Controlador c3= new Controlador(nivel3.tablero(), nivel3.posiciones(), 3);
+            c3.verTablero();
+            c3.verPos();
             
             Nivel3 nivel3UI = new Nivel3(nivel3.tablero(), nivel3.posiciones(), 3);  
             nivel3UI.setVisible(true);
@@ -238,6 +247,9 @@ public class Tableros extends javax.swing.JFrame {
             nivel4.leerArchivo();
             nivel4.llenarTablero();
             nivel4.llenarPosiciones();
+            Controlador c4 = new Controlador(nivel4.tablero(), nivel4.posiciones(), 4);
+            c4.verTablero();
+            c4.verPos();
             
             Nivel4 nivel4UI = new Nivel4(nivel4.tablero(), nivel4.posiciones(), 4);  
             nivel4UI.setVisible(true);
