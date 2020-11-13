@@ -132,12 +132,8 @@ public class Controlador {
         }
     }
     
-    /*public boolean alreadyVisited(node, queue){
-        for (visitedNode in queue){
-            if (visitedNode[0] == node[0] and visitedNode[1] == node[1]){
-                return true;
-        }
-        }
+    //funcion que verifica si una casilla ha sido recorrida antes
+    /*public boolean visitado(//fila a evaular, columna a evular, tablero de posiciones visitada(matriz)){
         return false;
     }*/
 
