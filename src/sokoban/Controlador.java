@@ -11,14 +11,14 @@ package sokoban;
  */
 public class Controlador {
     String[][] Tablero;
-    String[][] posJugador;
-    String[][] posCaja;
+    int[][] posJugador;
+    int[][] posCaja;
     
     
-    public Controlador(String[][] t, String[][] p, int tamaño){
+    public Controlador(String[][] t, int[][] p, int tamaño){
         Tablero = new String[t.length][t[0].length];
-        posJugador = new String[1][2];
-        posCaja = new String[tamaño-1][2];
+        posJugador = new int[1][2];
+        posCaja = new int[tamaño-1][2];
         
         Tablero = t;
         for(int i=0; i<p.length;i++){
@@ -59,22 +59,68 @@ public class Controlador {
         }
     }
     
-    public boolean caja(String[][] tablero, int fil, int col) {
+     //Retorna falso o verdadero si en la posición (fil,col) hay un espacio
+     public boolean esEspacio(String[][] tablero, int fil, int col) {
         boolean respuesta = false;
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero[0].length; j++) {
-                if (tablero[i][j].equals("C")) {
-                    respuesta = true;
-                }
-            }
-        }
+        if (tablero[fil][col].equals("0")){
+            respuesta = true;}
+        return respuesta;
+    }
+     //Retorna falso o verdadero si en la posición (fil,col) es meta 
+    public boolean esMeta(String[][] tablero, int fil, int col) {
+        boolean respuesta = false;
+        if (tablero[fil][col].equals("X")){
+            respuesta = true;}
+        return respuesta;
+    }
+    //Retorna falso o verdadero si en la posición (fil,col) hay un muro
+    public boolean esMuro(String[][] tablero, int fil, int col) {
+        boolean respuesta = false;
+        if (tablero[fil][col].equals("W")){
+            respuesta = true;}
+        return respuesta;
+    }
+    //Retorna falso o verdadero si en la posición (fil,col) hay una caja
+    public boolean esCaja(String[][] tablero, int fil, int col) {
+        boolean respuesta = false;
+        if (tablero[fil][col].equals("C")){
+            respuesta = true;}
         return respuesta;
     }
     
-    public String[][] moverCaja(int fil, int col, String direccion, String[][] posicionCaja){
-        //for
-        //comprobar arriba, abajo, izquierda, derecha
+    /*public String[][] moverCaja(int fil, int col, String direccion, int[][] posicionCaja){
         
-        return posicionCaja;
-    }
+        if (!esCaja(Tablero, fil, col)){
+            return posicionCaja;
+        }else{
+            for (int i = 0; i<posicionCaja.length; i++){
+                if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil-1, col) || esMeta(Tablero, fil-1, col)) && direccion.equals("U")) {
+                            Tablero[fil+1][col] = "0";
+                            posicionCaja[i][0] = posicionCaja[i][0] - 1;
+                            Tablero[posX][posY] = "P";
+                            Tablero[posX - 1][posY] = "C";
+                            actualizarTablero(corregirTablero(Tablero));
+                            gano(corregirTablero(Tablero));
+                }
+
+                if (box[0] == row && box[1] == column && direction == 'D'){
+                    posicionCaja.remove(box)
+                    posicionCaja.append([row + 1,column])
+                    return posicionCaja;
+                }
+
+                if (box[0] == row && box[1] == column && direction == 'L'){
+                    posicionCaja.remove(box)
+                    posicionCaja.append([row,column - 1])
+                    return posicionCaja;
+                }
+
+                if (box[0] == row && box[1] == column && direction == 'R'){
+                    posicionCaja.remove(box)
+                    posicionCaja.append([row, column + 1])
+                    return posicionCaja;
+                }
+            }
+        }
+    }*/
 }

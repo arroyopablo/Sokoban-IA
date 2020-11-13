@@ -20,9 +20,9 @@ public class Niveles {
     int columna;
     int filaPosiciones;
     String tablero[][] = null;
-    String posiciones[][] = null;
+    int posiciones[][] = null;
     String cadenaTablero[] = null;
-    String cadenaPosiciones[] = null;    
+    int cadenaPosiciones[] = null;    
     
     public Niveles(String rutaIn, int filaIn, int columnaIn, int filaPosicionesIn){
         rutaArchivo = rutaIn;
@@ -30,7 +30,7 @@ public class Niveles {
         filaPosiciones = filaPosicionesIn;
         columna = columnaIn;  
         cadenaTablero = new String[fila*columna];
-        cadenaPosiciones = new String[filaPosicionesIn*2];
+        cadenaPosiciones = new int[filaPosicionesIn*2];
     }
     
     public boolean contieneComa(String linea) {
@@ -62,7 +62,7 @@ public class Niveles {
         int j = 0;
         while (caracter2 != -1 && j < cadenaPosiciones.length) {
             if (caracter2 != 13 && caracter2 != 10 &&caracter2 != 44) {
-                cadenaPosiciones[j] = Character.toString((char) caracter2);
+                cadenaPosiciones[j] = Integer.parseInt(Character.toString((char) caracter2));
                 caracter2 = f.read();
                 j++;
             } else {
@@ -84,7 +84,7 @@ public class Niveles {
     }
     
      public void llenarPosiciones() {
-        posiciones = new String[filaPosiciones][2];
+        posiciones = new int[filaPosiciones][2];
         int n = 0;
         for (int i = 0; i < posiciones.length; i++) {
             for (int j = 0; j < posiciones[0].length; j++) {
@@ -107,7 +107,7 @@ public class Niveles {
         return tablero;
     }
     
-    public String[][] verCadenaPosiciones(){
+    public int[][] verCadenaPosiciones(){
         for (int i = 0; i < posiciones.length; i++) {
             for (int j = 0; j < posiciones[0].length; j++) {
                 System.out.print(posiciones[i][j]);
@@ -117,7 +117,7 @@ public class Niveles {
         return posiciones;
     }
     
-    public String[][] posiciones(){
+    public int[][] posiciones(){
         return posiciones;
     }    
 }
