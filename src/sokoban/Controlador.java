@@ -155,10 +155,10 @@ public class Controlador {
         return comprobacion;
     }
     
+
     //comprueba si el moviemito desde la fila y col es valido para la dirección
     public boolean esValido(int fil, int col, String direccion){
-        boolean respuesta = true;
-            
+        boolean respuesta = true;      
         switch(direccion){
             case "U":
                 //Ariba hay muro
@@ -196,7 +196,91 @@ public class Controlador {
         return respuesta;
     }
         
-        
+ 
+    //Esta la estoy haciendo yo___________________________________________________
+    /*public boolean validarMovimiento(int fil, int col, String direccion){
+        boolean respuesta = false;
+        if (Tablero[fil][col].equals("W")) {
+            return false;
+        }
+
+        if (direccion.equals("U")){
+            if (esCaja(nodeBoxPos, fil, col)){
+                if (esCaja(nodeBoxPos, fil - 1, col)){
+                    return false;
+                }
+
+                if (Tablero[fil - 1][col].equals("W")){
+                    return false;
+                }
+
+                if (Tablero[fil - 2][col].equals("W") && Tablero[fil - 1][col - 1].equals("W") && Tablero[]){
+                    if (goals.__contains__([fil - 1, col])):
+                        return false;
+                }
+
+                if (Tablero[fil - 2][col] == 'W' and Tablero[fil - 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil - 1, col])):
+                        return false;
+
+            return true;
+            }
+
+        if direccion == 'D':
+            if esCaja(nodeBoxPos, fil, col):
+                if esCaja(nodeBoxPos, fil + 1, col):
+                    return false;
+
+                if Tablero[fil + 1][col] == 'W':
+                    return false;
+
+                if (Tablero[fil + 2][col] == 'W' and Tablero[fil + 1][col - 1] == 'W'):
+                    if not (goals.__contains__([fil+1,col])):
+                        return false;
+
+                if (Tablero[fil + 2][col] == 'W' and Tablero[fil + 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil + 1, col])):
+                        return false;
+
+            return true;
+
+        if direccion == 'R':
+            if esCaja(nodeBoxPos, fil, col): 
+                if esCaja(nodeBoxPos, fil, col + 1):
+                    return false;
+
+                if Tablero[fil][col + 1] == 'W':
+                    return false;
+
+                if (Tablero[fil][col + 2] == 'W' and Tablero[fil + 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil, col + 1])):
+                        return false;
+
+                if (Tablero[fil][col + 2] == 'W' and Tablero[fil - 1][col + 1] == 'W'):
+                    if not (goals.__contains__([fil, col + 1])):
+                        return false;
+
+            return true;
+
+        if direccion == 'L':
+            if esCaja(nodeBoxPos, fil, col):
+                if esCaja(nodeBoxPos, fil, col - 1):
+                    return false;
+
+                if Tablero[fil][col - 1] == 'W':
+                    return false;
+
+                if (Tablero[fil][col - 2] == 'W' and Tablero[fil + 1][col - 1] == 'W'):
+                    if not (goals.__contains__([fil,col - 1])):
+                        return false;
+
+                if (Tablero[fil][col - 2] == 'W' and Tablero[fil - 1][col - 1] == 'W'):
+                    if not (goals.__contains__([fil, col - 1])):
+                        return false;
+
+            return true;
+    }*/
+    
     public boolean finalJuego(String[][] tablero) {
         int logrado = 0;
         for (int i = 0; i <= metas.length; i++) {

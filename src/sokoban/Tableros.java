@@ -178,7 +178,10 @@ public class Tableros extends javax.swing.JFrame {
 
     private void jButtonNivel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel1MouseClicked
         try {
+
             String rutaNivel1 = "E:\\NetBeans\\Sokoban-IA\\src\\niveles\\nivel1.txt";
+
+            //String rutaNivel1 = "niveles/nivel1.txt";
             Niveles nivel1 = new Niveles(rutaNivel1, 6, 6, 3);
             nivel1.leerArchivo();
             nivel1.llenarTablero();
