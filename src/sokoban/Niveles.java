@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Pablo Andres A
  */
 public class Niveles {
-    String rutaArchivo = "";
+    String rutaArchivo ="";
     int fila;
     int columna;
     int filaPosiciones;

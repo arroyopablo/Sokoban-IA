@@ -130,27 +130,23 @@ public class Controlador {
         } else {
             if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil - 1, col) || esMeta(Tablero, fil - 1, col)) && direccion.equals("U")) {
                 posicionCaja[0][0] = fil;
-                TableroNumVisitas[fil+1][col]++; 
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil + 1, col) || esMeta(Tablero, fil + 1, col)) && direccion.equals("D")) {
                 posicionCaja[0][0] = fil;
-                TableroNumVisitas[fil-1][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col - 1) || esMeta(Tablero, fil, col - 1)) && direccion.equals("L")) {
                 posicionCaja[0][1] = col;
-                TableroNumVisitas[fil][col+1]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col + 1) || esMeta(Tablero, fil, col + 1)) && direccion.equals("R")) {
                 posicionCaja[0][1] = col;
-                TableroNumVisitas[fil][col-1]++;
             }
             return posicionCaja;
         }
     }
     
     //funcion que verifica a partir de la matriz "TableroNumVisitas" si uns posicion ha sido visitada
-    public boolean visitado(int fila, int columna){
+    public boolean visitado(int fila, int cola){
         boolean comprobacion= false;
         
         //codigo aqui...
-        //if(TableroNumVisitas[fila][columna] == 0){
+        //if(TableroNumVisitas[fila][cola] == 0){
         //  boolean false;    
         //}else{
         //  boolean true;
@@ -159,15 +155,48 @@ public class Controlador {
         return comprobacion;
     }
     
-    //Esta la estoy haciendo yo___________________________________________________
-    public boolean validarMovimiento(){
-        boolean respuesta = false;
-        
-        //codigo aqui
-        
-        return respuesta;//
+    //comprueba si el moviemito desde la fila y col es valido para la dirección
+    public boolean esValido(int fil, int col, String direccion){
+        boolean respuesta = true;
+            
+        switch(direccion){
+            case "U":
+                //Ariba hay muro
+                if(Tablero[fil - 1][col].equals("W")){return false;}
+                //Ariiba hay dos cajas seguidas
+                if(Tablero[fil - 1][col].equals("C")&&Tablero[fil - 2][col].equals("C")){return false;}
+                //Arriba hay una caja seguida de un muro
+                if(Tablero[fil - 1][col].equals("C")&&Tablero[fil - 2][col].equals("W")){return false;}
+                break;
+            case "D":
+                //Abajo hay muro
+                if(Tablero[fil + 1][col].equals("W")){return false;}
+                //Ariiba hay dos cajas seguidas
+                if(Tablero[fil + 1][col].equals("C")&&Tablero[fil + 2][col].equals("C")){return false;}
+                //Arriba hay una caja seguida de un muro
+                if(Tablero[fil + 1][col].equals("C")&&Tablero[fil + 2][col].equals("W")){return false;}
+                break;
+            case "L":
+                //Izquierda hay muro
+                if(Tablero[fil][col-1].equals("W")){return false;}
+                //Izquierda hay dos cajas seguidas
+                if(Tablero[fil][col-1].equals("C")&&Tablero[fil - 2][col].equals("C")){return false;}
+                //Izquierda hay una caja seguida de un muro
+                if(Tablero[fil][col-1].equals("C")&&Tablero[fil - 2][col].equals("W")){return false;}
+                break;
+            case "R":
+                //Derecha hay muro
+                if(Tablero[fil][col+1].equals("W")){return false;}
+                //Derecha hay dos cajas seguidas
+                if(Tablero[fil][col+1].equals("C")&&Tablero[fil + 2][col].equals("C")){return false;}
+                //Derecha hay una caja seguida de un muro
+                if(Tablero[fil][col+1].equals("C")&&Tablero[fil + 2][col].equals("W")){return false;}
+                break;
+        }
+        return respuesta;
     }
-    
+        
+        
     public boolean finalJuego(String[][] tablero) {
         int logrado = 0;
         for (int i = 0; i <= metas.length; i++) {
