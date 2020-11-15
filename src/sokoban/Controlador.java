@@ -129,12 +129,16 @@ public class Controlador {
         } else {
             if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil - 1, col) || esMeta(Tablero, fil - 1, col)) && direccion.equals("U")) {
                 posicionCaja[0][0] = fil;
+                TableroNumVisitas[fil+1][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil + 1, col) || esMeta(Tablero, fil + 1, col)) && direccion.equals("D")) {
                 posicionCaja[0][0] = fil;
+                TableroNumVisitas[fil-1][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col - 1) || esMeta(Tablero, fil, col - 1)) && direccion.equals("L")) {
                 posicionCaja[0][1] = col;
+                TableroNumVisitas[fil][col+1]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col + 1) || esMeta(Tablero, fil, col + 1)) && direccion.equals("R")) {
                 posicionCaja[0][1] = col;
+                TableroNumVisitas[fil][col-1]++;
             }
             return posicionCaja;
         }
