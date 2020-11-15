@@ -141,146 +141,119 @@ public class Controlador {
     }
     
     //funcion que verifica a partir de la matriz "TableroNumVisitas" si uns posicion ha sido visitada
-    public boolean visitado(int fila, int cola){
-        boolean comprobacion= false;
-        
-        //codigo aqui...
-        //if(TableroNumVisitas[fila][cola] == 0){
-        //  boolean false;    
-        //}else{
-        //  boolean true;
-        //}
-        
+    public boolean visitado(int fila, int cola) {
+        boolean comprobacion = false;
+        if (TableroNumVisitas[fila][cola] == 0) {
+            comprobacion = false;
+        } else {
+            comprobacion = true;
+        }
+
         return comprobacion;
     }
     
+    public boolean metaEnFila(String[][] tablero, int fila){
+        boolean res = false;
+        for(int i=0; i<tablero[0].length; i++){
+            if(tablero[fila][i].equals("X")){
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
+    
+    public boolean metaEnColumna(String[][] tablero, int columna){
+        boolean res = false;
+        for(int i=0; i<tablero.length; i++){
+            if(tablero[i][columna].equals("X")){
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
 
     //comprueba si el moviemito desde la fila y col es valido para la dirección
     public boolean esValido(int fil, int col, String direccion){
-        boolean respuesta = true;      
+        boolean respuesta = true;
+        if (Tablero[fil][col].equals("W") || fil <= 0 || fil>=Tablero.length || col <= 0 || col >= Tablero[0].length){
+            return false;
+        }
+        
         switch(direccion){
             case "U":
-                //Ariba hay muro
-                if(Tablero[fil - 1][col].equals("W")){return false;}
-                //Ariiba hay dos cajas seguidas
-                if(Tablero[fil - 1][col].equals("C")&&Tablero[fil - 2][col].equals("C")){return false;}
-                //Arriba hay una caja seguida de un muro
-                if(Tablero[fil - 1][col].equals("C")&&Tablero[fil - 2][col].equals("W")){return false;}
+                if(esCaja(Tablero, fil, col)){
+                    //Ariba hay muro
+                    if(esMuro(Tablero, fil - 1, col)){respuesta = false; break;}
+                    //Arriba hay una caja
+                    if(esCaja(Tablero, fil - 1,col)){respuesta = false; break;}
+                    //verificar diagonales y rincones
+                    if(fil-2>=0 && col-1>=0 && col+1<Tablero[0].length){
+                        //Diagonal superior izquieda hay un muro, 2 posiciones arriba es muro y no contiene la meta la fila superior
+                        if(esMuro(Tablero, fil - 1, col - 1) && esMuro(Tablero,fil - 2,col) && !metaEnFila(Tablero, fil-1)){respuesta = false; break;}
+                        //Diagonal superior derecha hay un muro, 2 posiciones arriba es muro y no es meta la meta la fila superior
+                        if(esMuro(Tablero, fil - 1, col + 1) && esMuro(Tablero, fil - 2, col) && !metaEnFila(Tablero, fil-1)){respuesta = false; break;}
+                        
+                    }
+                }else{
+                    respuesta = true;
+                }
                 break;
             case "D":
-                //Abajo hay muro
-                if(Tablero[fil + 1][col].equals("W")){return false;}
-                //Ariiba hay dos cajas seguidas
-                if(Tablero[fil + 1][col].equals("C")&&Tablero[fil + 2][col].equals("C")){return false;}
-                //Arriba hay una caja seguida de un muro
-                if(Tablero[fil + 1][col].equals("C")&&Tablero[fil + 2][col].equals("W")){return false;}
+                if(esCaja(Tablero, fil, col)){
+                    //Abajo hay muro
+                    if(esMuro(Tablero, fil + 1, col)){respuesta = false; break;}
+                    //Abajo hay una caja
+                    if(esCaja(Tablero, fil + 1, col)){respuesta = false; break;}
+                    //verificar diagonales y rincones
+                    if(fil+2<Tablero.length && col-1>=0 && col+1<Tablero[0].length){
+                        //Diagonal inferior izquierda hay un muro, 2 posiciones abajo es muro y no contiene la meta la fila inferior
+                        if(esMuro(Tablero, fil + 1, col - 1) && esMuro(Tablero, fil + 2, col) && !metaEnFila(Tablero, fil+1)){respuesta = false; break;}
+                        //Diagonal inferior derecha hay un muro, 2 posiciones abajo es muro y no es meta la meta la fila inferior
+                        if(esMuro(Tablero, fil + 1, col + 1) && esMuro(Tablero, fil + 2, col) && !metaEnFila(Tablero, fil+1)){respuesta = false; break;}                        
+                    }
+                }else{
+                    respuesta = true;
+                }
                 break;
             case "L":
-                //Izquierda hay muro
-                if(Tablero[fil][col-1].equals("W")){return false;}
-                //Izquierda hay dos cajas seguidas
-                if(Tablero[fil][col-1].equals("C")&&Tablero[fil - 2][col].equals("C")){return false;}
-                //Izquierda hay una caja seguida de un muro
-                if(Tablero[fil][col-1].equals("C")&&Tablero[fil - 2][col].equals("W")){return false;}
+                if(esCaja(Tablero, fil, col)){
+                    //Izquierda hay muro
+                    if(esMuro(Tablero, fil, col-1)){respuesta = false; break;}
+                    //Izquierda hay una caja
+                    if(esCaja(Tablero, fil, col-1)){respuesta = false; break;}
+                    //verificar diagonales y rincones
+                    if(col-2>=0 && fil-1>=0 && fil+1<Tablero.length){
+                        //Diagonal inferior izquierda hay un muro, 2 posiciones a la izquierda es muro y no contiene la meta la columna de la izquieda
+                        if(esMuro(Tablero, fil + 1, col - 1) && esMuro(Tablero, fil, col-2) && !metaEnColumna(Tablero, col-1)){respuesta = false; break;}
+                        //Diagonal superior izquierda hay un muro, 2 posiciones a la izquierda es muro y no meta la columna izquierda
+                        if(esMuro(Tablero, fil - 1, col - 1) && esMuro(Tablero, fil, col-2) && !metaEnColumna(Tablero, col-1)){respuesta = false; break;}                        
+                    }
+                }else{
+                    respuesta = true;
+                }
                 break;
             case "R":
-                //Derecha hay muro
-                if(Tablero[fil][col+1].equals("W")){return false;}
-                //Derecha hay dos cajas seguidas
-                if(Tablero[fil][col+1].equals("C")&&Tablero[fil + 2][col].equals("C")){return false;}
-                //Derecha hay una caja seguida de un muro
-                if(Tablero[fil][col+1].equals("C")&&Tablero[fil + 2][col].equals("W")){return false;}
-                //cuando es rincon 
-                //if(Tablero[fil][col+2].equals("W")&&Tablero[fil - ][col].equals("W")){return false;}
+                if(esCaja(Tablero, fil, col)){
+                    //Derecha hay muro
+                    if(esMuro(Tablero, fil, col+1)){respuesta = false; break;}
+                    //Derecha hay una caja
+                    if(esCaja(Tablero, fil, col+1)){respuesta = false; break;}
+                    //verificar diagonales y rincones
+                    if(col+2<Tablero[0].length && fil-1>=0 && fil+1<Tablero.length){
+                        //Diagonal inferior derecha hay un muro, 2 posiciones a la derecha es muro y no contiene la meta la columna de la derecha
+                        if(esMuro(Tablero, fil + 1, col + 1) && esMuro(Tablero, fil, col+2) && !metaEnColumna(Tablero, col+1)){respuesta = false; break;}
+                        //Diagonal superior derecga hay un muro, 2 posiciones a la derecha es muro y no meta la columna derecha
+                        if(esMuro(Tablero, fil - 1, col + 1) && esMuro(Tablero, fil, col+2) && !metaEnColumna(Tablero, col+1)){respuesta = false; break;}                        
+                    }
+                }else{
+                    respuesta = true;
+                }
                 break;
         }
         return respuesta;
-    }
-        
- 
-    //Esta la estoy haciendo yo___________________________________________________
-    /*public boolean validarMovimiento(int fil, int col, String direccion){
-        boolean respuesta = false;
-        if (Tablero[fil][col].equals("W")) {
-            return false;
-        }
-
-        if (direccion.equals("U")){
-            if (esCaja(nodeBoxPos, fil, col)){
-                if (esCaja(nodeBoxPos, fil - 1, col)){
-                    return false;
-                }
-
-                if (Tablero[fil - 1][col].equals("W")){
-                    return false;
-                }
-
-                if (Tablero[fil - 2][col].equals("W") && Tablero[fil - 1][col - 1].equals("W") && Tablero[]){
-                    if (goals.__contains__([fil - 1, col])):
-                        return false;
-                }
-
-                if (Tablero[fil - 2][col] == 'W' and Tablero[fil - 1][col + 1] == 'W'):
-                    if not (goals.__contains__([fil - 1, col])):
-                        return false;
-
-            return true;
-            }
-
-        if direccion == 'D':
-            if esCaja(nodeBoxPos, fil, col):
-                if esCaja(nodeBoxPos, fil + 1, col):
-                    return false;
-
-                if Tablero[fil + 1][col] == 'W':
-                    return false;
-
-                if (Tablero[fil + 2][col] == 'W' and Tablero[fil + 1][col - 1] == 'W'):
-                    if not (goals.__contains__([fil+1,col])):
-                        return false;
-
-                if (Tablero[fil + 2][col] == 'W' and Tablero[fil + 1][col + 1] == 'W'):
-                    if not (goals.__contains__([fil + 1, col])):
-                        return false;
-
-            return true;
-
-        if direccion == 'R':
-            if esCaja(nodeBoxPos, fil, col): 
-                if esCaja(nodeBoxPos, fil, col + 1):
-                    return false;
-
-                if Tablero[fil][col + 1] == 'W':
-                    return false;
-
-                if (Tablero[fil][col + 2] == 'W' and Tablero[fil + 1][col + 1] == 'W'):
-                    if not (goals.__contains__([fil, col + 1])):
-                        return false;
-
-                if (Tablero[fil][col + 2] == 'W' and Tablero[fil - 1][col + 1] == 'W'):
-                    if not (goals.__contains__([fil, col + 1])):
-                        return false;
-
-            return true;
-
-        if direccion == 'L':
-            if esCaja(nodeBoxPos, fil, col):
-                if esCaja(nodeBoxPos, fil, col - 1):
-                    return false;
-
-                if Tablero[fil][col - 1] == 'W':
-                    return false;
-
-                if (Tablero[fil][col - 2] == 'W' and Tablero[fil + 1][col - 1] == 'W'):
-                    if not (goals.__contains__([fil,col - 1])):
-                        return false;
-
-                if (Tablero[fil][col - 2] == 'W' and Tablero[fil - 1][col - 1] == 'W'):
-                    if not (goals.__contains__([fil, col - 1])):
-                        return false;
-
-            return true;
-    }*/
+    }      
     
     public boolean finalJuego(String[][] tablero) {
         int logrado = 0;

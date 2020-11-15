@@ -6,6 +6,7 @@
 package sokoban;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -178,10 +179,8 @@ public class Tableros extends javax.swing.JFrame {
 
     private void jButtonNivel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel1MouseClicked
         try {
-
-            String rutaNivel1 = "E:\\NetBeans\\Sokoban-IA\\src\\niveles\\nivel1.txt";
-
-            //String rutaNivel1 = "niveles/nivel1.txt";
+            URL url = getClass().getResource("../niveles/nivel1.txt");
+            String rutaNivel1 = url.getPath();
             Niveles nivel1 = new Niveles(rutaNivel1, 6, 6, 3);
             nivel1.leerArchivo();
             nivel1.llenarTablero();
@@ -202,7 +201,8 @@ public class Tableros extends javax.swing.JFrame {
 
     private void jButtonNivel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel2MouseClicked
         try {
-            String rutaNivel2 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel2.txt";
+            URL url = getClass().getResource("../niveles/nivel2.txt");
+            String rutaNivel2 = url.getPath();
             Niveles nivel2 = new Niveles(rutaNivel2, 6, 7, 3);
             nivel2.leerArchivo();
             nivel2.llenarTablero();
@@ -227,7 +227,8 @@ public class Tableros extends javax.swing.JFrame {
 
     private void jButtonNivel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel3MouseClicked
         try {
-            String rutaNivel3 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel3.txt";
+            URL url = getClass().getResource("../niveles/nivel3.txt");
+            String rutaNivel3 = url.getPath();
             Niveles nivel3 = new Niveles(rutaNivel3, 7, 7, 3);
             nivel3.leerArchivo();
             nivel3.llenarTablero();
@@ -248,7 +249,8 @@ public class Tableros extends javax.swing.JFrame {
 
     private void jButtonNivel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNivel4MouseClicked
         try {
-            String rutaNivel4 = "D:/Descargas/11 SEMESTRE/INTELIGENCIA ARTIFICIAL/Sokoban-IA/src/niveles/nivel4.txt";
+            URL url = getClass().getResource("../niveles/nivel4.txt");
+            String rutaNivel4 = url.getPath();
             Niveles nivel4 = new Niveles(rutaNivel4, 7, 7, 4);
             nivel4.leerArchivo();
             nivel4.llenarTablero();
