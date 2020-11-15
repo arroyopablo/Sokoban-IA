@@ -23,6 +23,7 @@ public class NodoDFS{
     int[][] posCaja;
     int[][] metas;
     boolean juegoTerminado;
+    String recorrido="";
     
     NodoDFS(Controlador cp,NodoDFS p){
         c=cp;
@@ -33,9 +34,8 @@ public class NodoDFS{
     
     public void moverArriba(){
         nodoarriba =new NodoDFS(c,this);
-        
-        
         //hacer el moviemiento
+        recorrido=recorrido+"U";
         //actualizar el juego
         //verificar si termina
         //si queda bloqueado -> retorna null si no se bloquea recursivo lamar a jugar
@@ -53,8 +53,6 @@ public class NodoDFS{
     
     public void moverIzquierda(){
         nodoizq =new NodoDFS(c,this);
-        
-        
         //hacer el moviemiento
         //actualizar el juego
         //verificar si termina

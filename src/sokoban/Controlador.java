@@ -190,6 +190,8 @@ public class Controlador {
                 if(Tablero[fil][col+1].equals("C")&&Tablero[fil + 2][col].equals("C")){return false;}
                 //Derecha hay una caja seguida de un muro
                 if(Tablero[fil][col+1].equals("C")&&Tablero[fil + 2][col].equals("W")){return false;}
+                //cuando es rincon 
+                //if(Tablero[fil][col+2].equals("W")&&Tablero[fil - ][col].equals("W")){return false;}
                 break;
         }
         return respuesta;
