@@ -5,10 +5,6 @@
  */
 package sokoban;
 
-/**
- *
- * @author Pablo Andres A
- */
 public class Controlador {
     String[][] Tablero;
     int[][] TableroNumVisitas;
@@ -16,6 +12,9 @@ public class Controlador {
     int[][] posCaja;
     int[][] metas;
     boolean juegoTerminado;
+    
+    
+    
     
     public Controlador(String[][] t, int[][] p, int tamaño){
         Tablero = new String[t.length][t[0].length];
