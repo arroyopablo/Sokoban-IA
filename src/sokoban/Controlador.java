@@ -129,31 +129,25 @@ public class Controlador {
         } else {
             if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil - 1, col) || esMeta(Tablero, fil - 1, col)) && direccion.equals("U")) {
                 posicionCaja[0][0] = fil;
-                TableroNumVisitas[fil+1][col]++;
+                TableroNumVisitas[fil][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil + 1, col) || esMeta(Tablero, fil + 1, col)) && direccion.equals("D")) {
                 posicionCaja[0][0] = fil;
-                TableroNumVisitas[fil-1][col]++;
+                TableroNumVisitas[fil][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col - 1) || esMeta(Tablero, fil, col - 1)) && direccion.equals("L")) {
                 posicionCaja[0][1] = col;
-                TableroNumVisitas[fil][col+1]++;
+                TableroNumVisitas[fil][col]++;
             } else if (esCaja(Tablero, fil, col) && (esEspacio(Tablero, fil, col + 1) || esMeta(Tablero, fil, col + 1)) && direccion.equals("R")) {
                 posicionCaja[0][1] = col;
-                TableroNumVisitas[fil][col-1]++;
+                TableroNumVisitas[fil][col]++;
             }
             return posicionCaja;
         }
     }
     
     //funcion que verifica a partir de la matriz "TableroNumVisitas" si uns posicion ha sido visitada
-    public boolean visitado(int fila, int cola) {
-        boolean comprobacion = false;
-        if (TableroNumVisitas[fila][cola] == 0) {
-            comprobacion = false;
-        } else {
-            comprobacion = true;
-        }
-
-        return comprobacion;
+    public int visitado(int fila, int col) {
+        int numVisitas = TableroNumVisitas[fila][col];
+        return numVisitas;
     }
     
     public boolean metaEnFila(String[][] tablero, int fila){
@@ -259,17 +253,53 @@ public class Controlador {
         return respuesta;
     }      
     
-    public boolean finalJuego(String[][] tablero) {
+    public int cantidaLograda() {
         int logrado = 0;
-        for (int i = 0; i <= metas.length; i++) {
-            if (logrado == metas.length) {
-                juegoTerminado = true;
-            } else if (tablero[metas[i][0]][metas[i][1]].equals("C") && i < metas.length) {
+        for (int i = 0; i < metas.length; i++) {
+            if (Tablero[metas[i][0]][metas[i][1]].equals("C")) {
                 logrado++;
-            } else {
-                juegoTerminado = false;
             }
         }
-        return juegoTerminado;
+
+        return logrado;
+    }
+
+    public boolean finalJuego() {
+        if (cantidaLograda() == metas.length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public String[][] corregirTablero(){
+        for (int i = 0; i < metas.length; i++) {
+            for (int j = 0; j < metas[0].length-1; j++) {
+                if(Tablero[metas[i][j]][metas[i][j+1]].equals("0")){
+                    Tablero[metas[i][j]][metas[i][j+1]] = "X";
+                }
+            }
+        }
+        return Tablero;
+    }
+    
+    public int cantidadCasillasRecorridas(){
+        int total = 0;
+        for(int i=0; i<TableroNumVisitas.length; i++){
+            for(int j=0; j<TableroNumVisitas[0].length; j++){
+                if(TableroNumVisitas[i][j]!=0){
+                    total += 1;
+                }
+            }
+        }
+        return total;
+    }
+    
+    public boolean recorrioTodoTablero(){
+        if(cantidadCasillasRecorridas() == TableroNumVisitas.length*TableroNumVisitas[0].length){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

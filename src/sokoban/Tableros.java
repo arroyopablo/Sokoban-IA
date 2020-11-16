@@ -185,10 +185,12 @@ public class Tableros extends javax.swing.JFrame {
             nivel1.leerArchivo();
             nivel1.llenarTablero();
             nivel1.llenarPosiciones();
-            Controlador c1= new Controlador(nivel1.tablero(), nivel1.posiciones(), 3);
-            c1.verTablero();
-            c1.verPosJugador();
-            c1.verPosCajas();
+            //Controlador c1= new Controlador(nivel1.tablero(), nivel1.posiciones(), 3);
+            algoritmoBFS BFS = new algoritmoBFS(nivel1.tablero(), nivel1.posiciones(), 3);
+            System.out.println(BFS.algoritmoBFS());
+            //c1.verTablero();
+            //c1.verPosJugador();
+            //c1.verPosCajas();
             
             Nivel1 nivel1UI = new Nivel1(nivel1.tablero(), nivel1.posiciones(), 3);        
             nivel1UI.setVisible(true);
