@@ -41,7 +41,8 @@ public class Controlador {
                     posCaja[i-1][j] = p[i][j];
                 }
             }
-        }            
+        }
+        tableroInicial();
     }
     
     public int[][] encontraMetas(String[][] tablero){
@@ -148,6 +149,14 @@ public class Controlador {
     public int visitado(int fila, int col) {
         int numVisitas = TableroNumVisitas[fila][col];
         return numVisitas;
+    }
+    
+    public void tableroInicial() {
+        Tablero[posJugador[0][0]][posJugador[0][1]] = "P";
+        for(int i=0; i<posCaja.length; i++){            
+            Tablero[posCaja[i][0]][posCaja[i][1]] = "C";
+        }
+        corregirTablero();
     }
     
     public boolean metaEnFila(String[][] tablero, int fila){
@@ -272,7 +281,7 @@ public class Controlador {
         }
     }
     
-    public String[][] corregirTablero(){
+    public void corregirTablero(){
         for (int i = 0; i < metas.length; i++) {
             for (int j = 0; j < metas[0].length-1; j++) {
                 if(Tablero[metas[i][j]][metas[i][j+1]].equals("0")){
@@ -280,7 +289,6 @@ public class Controlador {
                 }
             }
         }
-        return Tablero;
     }
     
     public int cantidadCasillasRecorridas(){

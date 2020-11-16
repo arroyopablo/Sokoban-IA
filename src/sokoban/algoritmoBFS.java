@@ -49,59 +49,75 @@ public class algoritmoBFS {
     }
         
     public String algoritmoBFS(){
-        while(!control.finalJuego() && !control.recorrioTodoTablero()){
+        while(!control.recorrioTodoTablero() && !control.finalJuego()){
             int idCaja = 0;
-            if (control.esValido(posJugador[0][0]-1, posJugador[0][1], "U") && control.visitado(posJugador[0][0]-1, posJugador[0][1])<4){
+            if (control.esValido(posJugador[0][0]-1, posJugador[0][1], "U") && control.visitado(posJugador[0][0]-1, posJugador[0][1])<2){
                 posJugador[0][0]-=1;
                 for(int i=0;i<posCaja.length; i++){
                     if(posJugador[0][0]-1 == posCaja[i][0] && posJugador[0][1] == posCaja[i][1]){
                         caja_a_mover[0][0] =  posCaja[i][0];
                         caja_a_mover[0][1] =  posCaja[i][1];
-                        idCaja = i;
+                        idCaja = i;                        
+                        break;
                     }
                 }
                 posCaja[idCaja][0] = control.moverCaja(posJugador[0][0]-1, posJugador[0][1], "U", caja_a_mover)[0][0];
                 posCaja[idCaja][1] = control.moverCaja(posJugador[0][0]-1, posJugador[0][1], "U", caja_a_mover)[0][1];
+                Tablero [posCaja[idCaja][0]][posCaja[idCaja][1]] = "C"; 
+                control.corregirTablero();
                 respuesta += "U";
-            }else if (control.esValido(posJugador[0][0]+1, posJugador[0][1], "D") && control.visitado(posJugador[0][0]+1, posJugador[0][1])<4){
-                posJugador[0][0]+=1;
+            }else if (control.esValido(posJugador[0][0]+1, posJugador[0][1], "D") && control.visitado(posJugador[0][0]+1, posJugador[0][1])<2){
                 for(int i=0;i<posCaja.length; i++){
                     if(posJugador[0][0]+1 == posCaja[i][0] && posJugador[0][1] == posCaja[i][1]){
                         caja_a_mover[0][0] =  posCaja[i][0];
                         caja_a_mover[0][1] =  posCaja[i][1];
                         idCaja = i;
+                        break;
                     }
                 }
+                posJugador[0][0]+=1;
                 posCaja[idCaja][0] = control.moverCaja(posJugador[0][0]+1, posJugador[0][1], "D", caja_a_mover)[0][0];
                 posCaja[idCaja][1] = control.moverCaja(posJugador[0][0]+1, posJugador[0][1], "D", caja_a_mover)[0][1];
+                Tablero [posCaja[idCaja][0]][posCaja[idCaja][1]] = "C";
+                control.corregirTablero();
                 respuesta += "D";
-                break;
-            }else if (control.esValido(posJugador[0][0], posJugador[0][1]-1, "L") && control.visitado(posJugador[0][0], posJugador[0][1]-1)<4){
+            }else if (control.esValido(posJugador[0][0], posJugador[0][1]-1, "L") && control.visitado(posJugador[0][0], posJugador[0][1]-1)<2){
+                System.out.print(posJugador[0][0] + "  -  ");
+                System.out.print(posJugador[0][0]-1);
                 posJugador[0][1]-=1;
                 for(int i=0;i<posCaja.length; i++){
                     if(posJugador[0][0] == posCaja[i][0] && posJugador[0][1]-1 == posCaja[i][1]){
                         caja_a_mover[0][0] =  posCaja[i][0];
                         caja_a_mover[0][1] =  posCaja[i][1];
-                        idCaja = i;
+                        idCaja = i;                        
+                        break;
                     }
                 }
                 posCaja[idCaja][0] = control.moverCaja(posJugador[0][0], posJugador[0][1]-1, "L", caja_a_mover)[0][0];
                 posCaja[idCaja][1] = control.moverCaja(posJugador[0][0], posJugador[0][1]-1, "L", caja_a_mover)[0][1];
+                Tablero [posCaja[idCaja][0]][posCaja[idCaja][1]] = "C";
+                control.corregirTablero();
                 respuesta += "L";
-            }else if (control.esValido(posJugador[0][0], posJugador[0][1]+1, "R") && control.visitado(posJugador[0][0], posJugador[0][1]+1)<4){
+            }else if (control.esValido(posJugador[0][0], posJugador[0][1]+1, "R") && control.visitado(posJugador[0][0], posJugador[0][1]+1)<2){
+                System.out.print(posJugador[0][0] + "  -  ");
+                System.out.print(posJugador[0][0]+1);
                 posJugador[0][1]+=1;
                 for(int i=0;i<posCaja.length; i++){
                     if(posJugador[0][0] == posCaja[i][0] && posJugador[0][1]+1 == posCaja[i][1]){
                         caja_a_mover[0][0] =  posCaja[i][0];
                         caja_a_mover[0][1] =  posCaja[i][1];
-                        idCaja = i;
+                        idCaja = i;                        
+                        break;
                     }
                 }
                 posCaja[idCaja][0] = control.moverCaja(posJugador[0][0], posJugador[0][1]+1, "R", caja_a_mover)[0][0];
                 posCaja[idCaja][1] = control.moverCaja(posJugador[0][0], posJugador[0][1]+1, "R", caja_a_mover)[0][1];
+                Tablero [posCaja[idCaja][0]][posCaja[idCaja][1]] = "C";
+                control.corregirTablero();
                 respuesta += "R";
             } else {
                 respuesta = "algo";
+                break;
             }       
         }
         return respuesta;
