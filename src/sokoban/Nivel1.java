@@ -439,7 +439,7 @@ public class Nivel1 extends javax.swing.JFrame {
 
     private void cerrarNivel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarNivel1MouseClicked
         dispose();
-        Tableros tablero = new Tableros();
+        Tableros tablero = new Tableros();        
         tablero.setVisible(true);
         tablero.setLocationRelativeTo(null);
     }//GEN-LAST:event_cerrarNivel1MouseClicked
